@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'style_index.css' %}">
+    </head>
+
+    <body>
+        <a href="logout">Log Out</a>
+        <h1>Hello {{user.username}}</h1>
+        <h1>Hello, Please input text</h1>
+        <form method="POST" action = "counter">
+            {% csrf_token %}
+            <textarea name = "text" rows="20" cols="40"></textarea>
+            <br>
+            <input type="submit">
+        </form>
+        <h1>History</h1>
+        <div class="history">
+            <table>
+                <thead>
+                    <th>Text</th>
+                    <th>Number Of Word</th>
+                </thead>
+                <tbody>
+                    {% for his in histories %}
+                        <tr>
+                            <td>{{ his.text }}</td>
+                            <td>{{ his.num_of_text }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>    
+        </div>  
+    </body>   
+</html>
